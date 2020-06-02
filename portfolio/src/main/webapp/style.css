@@ -62,10 +62,33 @@ body {
 h2{
     color: white;
 }
+.title{
+    color: rgb(204,204,255)
+}
  
 .column {
   float: left;
   width: 33.33%;
   padding: 5px;
 }
- 
+ .navbar {
+  background-color: rgb(204,255,255)); 
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+.navbar li {float: left;}
+.navbar li a {
+  color: white;
+  display: block;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+.navbar li a:hover {background-color: #rgb(204,255,255);}
+.navbar li.right {float: right;}
+@media screen and (max-width: 580px) {
+  .navbar li.right, 
+  .navbar li {float: none;}
+}
