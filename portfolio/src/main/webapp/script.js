@@ -34,3 +34,10 @@ function addRandomQuote() {
   const greetingContainer = document.getElementById('quote-container');
   greetingContainer.innerText = greeting;
 }
+
+//hello jamier function
+async function getGreetingUsingAsyncAwait(){
+    const response = await fetch('/data');
+    const greeting = await response.text();
+    document.getElementById('data-holder').innerText = greeting;
+}
