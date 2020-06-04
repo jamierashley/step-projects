@@ -17,14 +17,14 @@
  */
 function addRandomQuote() {
   const greetings =
-      ['The world breaks many, but after many are strong at the broken places. Ernest Hemingway',
-      'Thomas Edison\'s last words were \"It\'s very beautiful over there.\" I don\'t know where theree is, but I believe it\'s somewhere and I hope it\'s beautiful. John Green',
-      'It\'s a very difficult era in which to be a person, just a real, actual person, instead of a collection of personality traits selected from an ednless automay of cHracters. Gillian Flynn'
-      'There is always a way for those clever enough to find out. Rick Riordan',
-      'Be careful of love. It\'ll twist your brain around and leave you thinking up is down and right is wrong. Rick Riordan',
-      '...some things are better left in the past. And true things are destined to repeat themselves. Suzanne Young',
-      'We believe in ordinary acts of bravery inthe courage that drives one perspn to stand up for another. Veronica Roth',
-      'I have a theory that selflessness and bravery aren\'t all that different. Veronica Roth'
+      ['\"The world breaks many, but after many are strong at the broken places.\" -Ernest Hemingway',
+      '\"Thomas Edison\'s last words were \"It\'s very beautiful over there.\" I don\'t know where theree is, but I believe it\'s somewhere and I hope it\'s beautiful.\" -John Green',
+      '\"It\'s a very difficult era in which to be a person, just a real, actual person, instead of a collection of personality traits selected from an ednless automay of Characters.\" -Gillian Flynn',
+      '\"There is always a way for those clever enough to find out.\" -Rick Riordan',
+      '\"Be careful of love. It\'ll twist your brain around and leave you thinking up is down and right is wrong.\" -Rick Riordan',
+      '\"...some things are better left in the past. And true things are destined to repeat themselves.\" -Suzanne Young',
+      '\"We believe in ordinary acts of bravery in the courage that drives one perspn to stand up for another.\" -Veronica Roth',
+      '\"I have a theory that selflessness and bravery aren\'t all that different.\" -Veronica Roth'
       ];
 
   // Pick a random greeting.
@@ -33,4 +33,22 @@ function addRandomQuote() {
   // Add it to the page.
   const greetingContainer = document.getElementById('quote-container');
   greetingContainer.innerText = greeting;
+  console.log(greetingContainer);
+}
+
+//hello jamier function
+async function getGreetingUsingAsyncAwait(){
+    const response = await fetch('/data');
+    const greeting = await response.text();
+    document.getElementById('data-holder').innerText = greeting;
+}
+
+//arrow function
+function getGreetingsArrowFunctions() {
+  fetch('/data').then(response => response.json()).then((ArrayIn) => {
+    const listOf = document.getElementById('data-holder');
+    console.log(ArrayIn[0]);
+    console.log(ArrayIn[1]);
+    console.log(ArrayIn[2]);
+  });
 }
