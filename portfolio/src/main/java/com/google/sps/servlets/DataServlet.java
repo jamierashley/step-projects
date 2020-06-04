@@ -15,6 +15,9 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +27,33 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> state;
+
+  public void init(){
+      state = new ArrayList<>();
+      state.add("srunchies are accesories");
+      state.add("inkjoy colored pens");
+      state.add("custom notebook");
+  }
+
+  
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello Jamier!");
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+  //  response.setContentType("application/json;");
+//    response.getWriter().println("Hello Jamier!");
+    //DataServlet statements = state;
+    
+    String json = convertToJsonUsingGson(state);
+
+    // Send the JSON as the response
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  private String convertToJsonUsingGson(ArrayList state) {
+    Gson gson = new Gson();
+    String json = gson.toJson(state);
+    return json;
   }
 }
+
