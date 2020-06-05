@@ -27,13 +27,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> state;
+  private ArrayList<String> statements;
 
   public void init(){
-      state = new ArrayList<>();
-      state.add("srunchies are accesories");
-      state.add("inkjoy colored pens");
-      state.add("custom notebook");
+      statements = new ArrayList<>();
+    //   statements.add("srunchies are accesories");
+    //   statements.add("inkjoy colored pens");
+    //   statements.add("custom notebook");
   }
 
   
@@ -43,17 +43,34 @@ public class DataServlet extends HttpServlet {
 //    response.getWriter().println("Hello Jamier!");
     //DataServlet statements = state;
     
-    String json = convertToJsonUsingGson(state);
+    String json = convertToJsonUsingGson(statements);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
+  @Override
+   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+
+    String playerChoice = getChoice(request);
+    statements.add(playerChoice);
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
+  }
+
+
   private String convertToJsonUsingGson(ArrayList state) {
     Gson gson = new Gson();
     String json = gson.toJson(state);
     return json;
+  }
+
+  private String getChoice(HttpServletRequest request) {
+    // Get the input from the form.
+    String answerString = request.getParameter("text-input");
+    return answerString;
   }
 }
 
