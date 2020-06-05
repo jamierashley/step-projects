@@ -14,9 +14,14 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalTime; 
+import java.util.Date;
 import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +40,6 @@ public class DataServlet extends HttpServlet {
     //   statements.add("inkjoy colored pens");
     //   statements.add("custom notebook");
   }
-
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -54,10 +58,23 @@ public class DataServlet extends HttpServlet {
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
 
-    String playerChoice = getChoice(request);
-    statements.add(playerChoice);
-    // Redirect back to the HTML page.
+    String comment = getChoice(request);
+    statements.add(comment);
+    //dates to use for entity property
+    Date dateNow = new Date();
+    long timeNow = dateNow.getTime();
+    int timeNowToUse = (int) timeNow;
+    //creat entity > works
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("title", comment);
+    taskEntity.setProperty("timestamp", timeNowToUse);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+    
+    //send back to homepage
     response.sendRedirect("/index.html");
+
   }
 
 
