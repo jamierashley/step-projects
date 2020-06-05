@@ -44,11 +44,13 @@ async function getGreetingUsingAsyncAwait(){
 }
 
 //arrow function
+//const ArrayIn = ArrayLIst<String>;
+const ArrayIn = document.getElementById('data-holder');
+
 function getGreetingsArrowFunctions() {
   fetch('/data').then(response => response.json()).then((ArrayIn) => {
-    const listOf = document.getElementById('data-holder');
-    console.log(ArrayIn[0]);
-    console.log(ArrayIn[1]);
-    console.log(ArrayIn[2]);
+    for (i=0; i < ArrayIn.length; i++){
+        console.log(ArrayIn[i]);
+    }
   });
 }
