@@ -23,7 +23,7 @@ function addRandomQuote() {
       '\"There is always a way for those clever enough to find out.\" -Rick Riordan',
       '\"Be careful of love. It\'ll twist your brain around and leave you thinking up is down and right is wrong.\" -Rick Riordan',
       '\"...some things are better left in the past. And true things are destined to repeat themselves.\" -Suzanne Young',
-      '\"We believe in ordinary acts of bravery inthe courage that drives one perspn to stand up for another.\" -Veronica Roth',
+      '\"We believe in ordinary acts of bravery in the courage that drives one perspn to stand up for another.\" -Veronica Roth',
       '\"I have a theory that selflessness and bravery aren\'t all that different.\" -Veronica Roth'
       ];
 
@@ -44,8 +44,13 @@ async function getGreetingUsingAsyncAwait(){
 }
 
 //arrow function
+//const ArrayIn = ArrayLIst<String>;
+const ArrayIn = document.getElementById('data-holder');
+
 function getGreetingsArrowFunctions() {
-  fetch('/data').then(response => response.text()).then((Greeting) => {
-    document.getElementById('data-holder').innerText = Greeting;
+  fetch('/data').then(response => response.json()).then((ArrayIn) => {
+    for (i=0; i < ArrayIn.length; i++){
+        console.log(ArrayIn[i]);
+    }
   });
 }

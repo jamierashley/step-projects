@@ -14,7 +14,18 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalTime; 
+import java.util.Date;
+import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +35,72 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> statements;
+
+  public void init(){
+      statements = new ArrayList<>();
+    //   statements.add("srunchies are accesories");
+    //   statements.add("inkjoy colored pens");
+    //   statements.add("custom notebook");
+  }
+  
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello Jamier!");
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+  //  response.setContentType("application/json;");
+//    response.getWriter().println("Hello Jamier!");
+    //DataServlet statements = state;
+    
+    String json = convertToJsonUsingGson(statements);
+
+    // Send the JSON as the response
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+
+    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    ArrayList<String> stringOfComments = new ArrayList<>();  
+    for (Entity entity : results.asIterable()) {
+         String title = (String) entity.getProperty("title");
+         stringOfComments.add(title);
+    }
+  }
+
+  @Override
+   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+
+    String comment = getChoice(request);
+    statements.add(comment);
+    //dates to use for entity property
+    Date dateNow = new Date();
+    long timeNow = dateNow.getTime();
+    int timeNowToUse = (int) timeNow;
+    //creat entity > works
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("title", comment);
+    taskEntity.setProperty("timestamp", timeNowToUse);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    //send back to homepage
+    response.sendRedirect("/index.html");
+
+  }
+
+
+  private String convertToJsonUsingGson(ArrayList state) {
+    Gson gson = new Gson();
+    String json = gson.toJson(state);
+    return json;
+  }
+
+  private String getChoice(HttpServletRequest request) {
+    // Get the input from the form.
+    String answerString = request.getParameter("text-input");
+    return answerString;
   }
 }
+
