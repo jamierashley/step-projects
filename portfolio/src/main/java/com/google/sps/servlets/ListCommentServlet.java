@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.sps.classes.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,70 +32,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-
-  private ArrayList<String> statements;
-
-  public void init(){
-      statements = new ArrayList<>();
-  }
-  
+@WebServlet("/display-comments")
+public class ListCommentServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-    String json = convertToJsonUsingGson(statements);
 
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-
-    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Comment").addSort("date", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<String> stringOfComments = new ArrayList<>();  
+    ArrayList<Comment> listOfComments = new ArrayList<>();  
     for (Entity entity : results.asIterable()) {
-         String title = (String) entity.getProperty("title");
-         stringOfComments.add(title);
+        String com = (String) entity.getProperty("comment");
+        String person = (String) entity.getProperty("name");
+        String date = (String) entity.getProperty("date");
+        
+        Comment commentAt = new Comment(com, person, date);
+        listOfComments.add(commentAt);
     }
-  }
 
-  @Override
-   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = getChoice(request);
-    String comment = getChoice2(request);
-
-    statements.add(comment + ", " + name);
-
-    Date dateNow = new Date();
-    long timeNow = dateNow.getTime();
-    int timeNowToUse = (int) timeNow;
-
-    Entity taskEntity = new Entity("Task");
-    taskEntity.setProperty("title", comment + ", " + name);
-    taskEntity.setProperty("timestamp", timeNowToUse);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
-
-    response.sendRedirect("/index.html");
+    if(!listOfComments.isEmpty()){
+        response.setContentType("application/json;");
+        response.getWriter().println(convertToJsonUsingGson(listOfComments));
+    }else{
+        response.getWriter().println("There are no comments to show.");
+    }
 
   }
-
-
-  private String convertToJsonUsingGson(ArrayList state) {
+   private String convertToJsonUsingGson(ArrayList listOfComments) {
     Gson gson = new Gson();
-    String json = gson.toJson(state);
+    String json = gson.toJson(listOfComments);
     return json;
   }
 
   private String getChoice(HttpServletRequest request) {
-    String answerString = request.getParameter("name");
-    return answerString;
-  }
-  private String getChoice2(HttpServletRequest request) {
-    String answerString = request.getParameter("comment");
+    // Get the input from the form.
+    String answerString = request.getParameter("text-input");
     return answerString;
   }
 }
-
