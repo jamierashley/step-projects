@@ -37,10 +37,13 @@ function addRandomQuote() {
 }
 
 //hello jamier function
-async function getCommentUsingAsyncAwait(){
-    const response = await fetch('comments');
-    const greeting = await response.text();
-    document.getElementById('data-holder').innerText = greeting;
+const ArrayInSec = document.getElementById('data-holder');
+function displayComments() {
+  fetch('/data').then(response => response.json()).then((ArrayInSec) => {
+    for (i=0; i < ArrayInSec.length; i++){
+        document.write(ArrayInSec[i]);
+    }
+  });
 }
 
 //arrow function
@@ -51,5 +54,13 @@ function getGreetingsArrowFunctions() {
     for (i=0; i < ArrayIn.length; i++){
         console.log(ArrayIn[i]);
     }
+  });
+}
+function loadTasks() {
+  fetch('/display-comments').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('show-task');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
   });
 }

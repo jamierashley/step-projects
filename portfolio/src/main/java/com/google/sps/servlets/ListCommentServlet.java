@@ -37,28 +37,28 @@ public class ListCommentServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
-    Query query = new Query("Comment").addSort("date", SortDirection.DESCENDING);
+    response.setContentType("application/json;");
+ //   response.getWriter().println(json);
+
+    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<Comment> listOfComments = new ArrayList<>();  
+    ArrayList<String> stringOfComments = new ArrayList<>();  
     for (Entity entity : results.asIterable()) {
-        String com = (String) entity.getProperty("comment");
-        String person = (String) entity.getProperty("name");
-        String date = (String) entity.getProperty("date");
-        
-        Comment commentAt = new Comment(com, person, date);
-        listOfComments.add(commentAt);
-    }
-
-    if(!listOfComments.isEmpty()){
-        response.setContentType("application/json;");
-        response.getWriter().println(convertToJsonUsingGson(listOfComments));
-    }else{
-        response.getWriter().println("There are no comments to show.");
-    }
-
+         String title = (String) entity.getProperty("title");
+         stringOfComments.add(title); 
   }
+  if(!stringOfComments.isEmpty()) {
+      Gson gson = new Gson();
+      response.setContentType("application/json;");
+      response.getWriter().println(gson.toJson(stringOfComments));
+    } else {
+      response.setContentType("text/html");
+      response.getWriter().println("There are no comments to show.");
+    }
+
+}
    private String convertToJsonUsingGson(ArrayList listOfComments) {
     Gson gson = new Gson();
     String json = gson.toJson(listOfComments);
