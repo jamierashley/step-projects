@@ -55,6 +55,7 @@ public class DataServlet extends HttpServlet {
     ArrayList<String> stringOfComments = new ArrayList<>();  
     for (Entity entity : results.asIterable()) {
          String title = (String) entity.getProperty("title");
+       //  String time = (String) entity.getProperty("timestamp");
          stringOfComments.add(title);
     }
   }
@@ -64,11 +65,13 @@ public class DataServlet extends HttpServlet {
     String name = getChoice(request);
     String comment = getChoice2(request);
 
-    statements.add(comment + ", " + name);
-
     Date dateNow = new Date();
     long timeNow = dateNow.getTime();
     int timeNowToUse = (int) timeNow;
+    String time = "6:00";
+
+
+    statements.add(comment + ", " + name + ", " + time);
 
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("title", comment + ", " + name);
