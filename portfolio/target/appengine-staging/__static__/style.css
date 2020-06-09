@@ -1,0 +1,94 @@
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+
+#greeting-container {
+  margin-top: 20px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+ 
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: rgb(204,255,255);
+}
+ 
+.leftcolumn {   
+  float: left;
+  width: 60%;
+}
+ 
+.rightcolumn {
+  float: left;
+  width: 40%;
+  padding-left: 20px;
+}
+ 
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+ 
+.card {
+   background-color: rgb(204,204,255);
+   padding: 20px;
+   margin-top: 20px;
+}
+ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+ 
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: rgb(204,255,255);
+  margin-top: 20px;
+}
+ 
+h2{
+    color: white;
+}
+.title{
+    color: rgb(204,204,255)
+}
+ 
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+ .navbar {
+  background-color: rgb(204,255,255)); 
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+.navbar li {float: left;}
+.navbar li a {
+  color: white;
+  display: block;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+.navbar li a:hover {background-color: #rgb(204,255,255);}
+.navbar li.right {float: right;}
+@media screen and (max-width: 580px) {
+  .navbar li.right, 
+  .navbar li {float: none;}
+}
