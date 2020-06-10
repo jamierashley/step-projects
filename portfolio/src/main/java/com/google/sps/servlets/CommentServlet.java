@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.sps.classes.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,73 +32,60 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/comments")
+public class CommentServlet extends HttpServlet{
 
-  private ArrayList<String> statements;
-
-  public void init(){
-      statements = new ArrayList<>();
-  }
-  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-    String json = convertToJsonUsingGson(statements);
 
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-
-    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Task").addSort("date", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<String> stringOfComments = new ArrayList<>();  
+    ArrayList<String> listOfComments = new ArrayList<>();  
+    Comment comm = new Comment("Comment", "Test");
+    listOfComments.add("empty");
     for (Entity entity : results.asIterable()) {
-         String title = (String) entity.getProperty("title");
-       //  String time = (String) entity.getProperty("timestamp");
-         stringOfComments.add(title);
+        String com = (String) entity.getProperty("title");
+        String date = (String) entity.getProperty("timestamp");
+        //Comment commentAt = new Comment(com, date);
+        listOfComments.add(com + ", " + date);
     }
+
+    if(!listOfComments.isEmpty()){
+        response.setContentType("application/json;");
+        response.getWriter().println(convertToJsonUsingGson(listOfComments));
+    }else{
+        response.getWriter().println("There are no comments to show.");
+    }
+
   }
-
-  @Override
+   @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = getChoice(request);
-    String comment = getChoice2(request);
 
-    Date dateNow = new Date();
-    long timeNow = dateNow.getTime();
-    int timeNowToUse = (int) timeNow;
-    String time = "6:00";
+    String comment = request.getParameter("comment");
+    String name = request.getParameter("name");
 
-
-    statements.add(comment + ", " + name + ", " + time);
-
-    Entity taskEntity = new Entity("Task");
-    taskEntity.setProperty("title", comment + ", " + name);
-    taskEntity.setProperty("timestamp", timeNowToUse);
-
+    Entity commentEntity = new Entity("Task");
+    Comment commentText = new Comment(comment, name);
+    commentEntity.setProperty("title", comment + ", " + name);
+    commentEntity.setProperty("timestamp", commentText.getDate());
+    
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
+    datastore.put(commentEntity);
 
     response.sendRedirect("/index.html");
-
   }
 
-
-  private String convertToJsonUsingGson(ArrayList state) {
+  private String convertToJsonUsingGson(ArrayList listOfComments) {
     Gson gson = new Gson();
-    String json = gson.toJson(state);
+    String json = gson.toJson(listOfComments);
     return json;
   }
 
   private String getChoice(HttpServletRequest request) {
-    String answerString = request.getParameter("name");
-    return answerString;
-  }
-  private String getChoice2(HttpServletRequest request) {
-    String answerString = request.getParameter("comment");
+    // Get the input from the form.
+    String answerString = request.getParameter("text-input");
     return answerString;
   }
 }
-

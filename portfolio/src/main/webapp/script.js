@@ -18,7 +18,7 @@
 function addRandomQuote() {
   const greetings =
       ['\"The world breaks many, but after many are strong at the broken places.\" -Ernest Hemingway',
-      '\"Thomas Edison\'s last words were \"It\'s very beautiful over there.\" I don\'t know where theree is, but I believe it\'s somewhere and I hope it\'s beautiful.\" -John Green',
+      '\"Thomas Edison\'s last words were \"It\'s very beautiful over there.\" I don\'t know where there is, but I believe it\'s somewhere and I hope it\'s beautiful.\" -John Green',
       '\"It\'s a very difficult era in which to be a person, just a real, actual person, instead of a collection of personality traits selected from an ednless automay of Characters.\" -Gillian Flynn',
       '\"There is always a way for those clever enough to find out.\" -Rick Riordan',
       '\"Be careful of love. It\'ll twist your brain around and leave you thinking up is down and right is wrong.\" -Rick Riordan',
@@ -37,20 +37,30 @@ function addRandomQuote() {
 }
 
 //hello jamier function
-async function getGreetingUsingAsyncAwait(){
-    const response = await fetch('/data');
-    const greeting = await response.text();
-    document.getElementById('data-holder').innerText = greeting;
+const ArrayInSec = document.getElementById('data-holder');
+function displayComments() {
+  fetch('/data').then(response => response.json()).then((ArrayInSec) => {
+    for (i=0; i < ArrayInSec.length; i++){
+        document.write(ArrayInSec[i]);
+    }
+  });
 }
 
 //arrow function
 //const ArrayIn = ArrayLIst<String>;
 const ArrayIn = document.getElementById('data-holder');
-
 function getGreetingsArrowFunctions() {
   fetch('/data').then(response => response.json()).then((ArrayIn) => {
     for (i=0; i < ArrayIn.length; i++){
         console.log(ArrayIn[i]);
     }
+  });
+}
+function loadTasks() {
+  fetch('/display-comments').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('show-task');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
   });
 }
