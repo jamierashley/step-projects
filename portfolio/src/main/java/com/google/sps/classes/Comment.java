@@ -12,15 +12,15 @@ public class Comment {
   private String comment;
   private String date;
 
-  public Comment(String c, String n){
-    name = n;
-    comment = c;
+  public Comment(String commentIn, String nameIn){
+    name = nameIn;
+    comment = commentIn;
     date = getCurrentDate();
   }
-  public Comment(String c, String n, String d){
-    name = n;
-    comment = c;
-    date = d;
+  public Comment(String commentIn, String nameIn, String dateIn){
+    name = nameIn;
+    comment = commentIn;
+    date = dateIn;
   }
   public void setDateToCurrentTime(){
     date = getCurrentDate();
