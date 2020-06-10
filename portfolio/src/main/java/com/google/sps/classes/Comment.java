@@ -12,6 +12,7 @@ public class Comment {
   private String comment;
   private String date;
 
+
   public Comment(String commentIn, String nameIn){
     name = nameIn;
     comment = commentIn;
