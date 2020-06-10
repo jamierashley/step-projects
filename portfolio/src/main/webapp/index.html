@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="script.js"></script>
-<link rel="stylesheet" href="../style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-</style>
+	<title>Jamier Ashley | Portfolio</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://photos.google.com/photo/AF1QipN16d0TaXaz8ZUY6u1Z_Z6_UDQlxLKBgEyhZ3Yx.js"></script>
+    <script src='script.js' type="text/javascript"></script>
 </head>
-
 <body>
+	<nav id='top'>
+		<div id='social'>
+			<ul>
+				<p>Social Contacts</p>
+				<li><a href="https://www.instagram.com/jjamieerr" target='_blank'><img src="https://img.icons8.com/color/48/000000/instagram-new.png"/></a></li>
+				<li><a href="https://www.github.com/jamierashley" target='_blank'><img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/></a></li>
+				<li><a href="https://www.linkedin.com/in/jamier-ashley-a398a41a8/" target='_blank'><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a></li>
+			</ul>
+		</div>
+		<div id = 'options'>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="https://www.github.com/jamierashley" target='_blank'>Projects</a></li>
+				<li><a href="pages/gallery.html">Disney Things</li>
+				<li><a href="pages/art_gal.html">Art Gallery</a></li>
+			</ul>
+		</div>
+	</nav>
 
-<div class="header">
-       <h1>Jamier Ashley</h1>
-</div>
- 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>Computer Science Experience</h2>
-      <li>Built a series of image filters (sepia, colorize, feather, etc.) using python</li>
-      <li>Participated in the Google 2019 New Orleans Coding Challenge and recieved 2nd place.</li>
-      <li>Built an interactive travel book for various countries and cities.</li>
-    </div>
-    <div class="card">
-            <h2>Life in General</h2>
-            <p>I'm a huge Disney fan. I've been to the parks three times in the last 4 years and it's become on of my favorite places to photograph.</p>
-            <p>My favorite part about Disney is that it's very family oriented. There's something for everyone to enjoy and ou feel right at home.</p>
-            <p>I've been to Disney twice with competetive cheerleading and once with all my bestfriends.</p>
-            <p>Checkout my favorite images in the gallery!<p>
-        <div class="row">
-            <a href="pages/gallery.html">GALLERY</a>
+	<main>
+		<p>Jamier<br>Ashley</p>
+		<br>
+	</main>
+	<div id='about_me'>
+		<h1>About Me</h1>
+		<div class = 'description'>
+                <div class="row">
+                <h2>Computer Science Experience</h2>
+                <li>Built a series of image filters (sepia, colorize, feather, etc.) using python</li>
+                <li>Participated in the Google 2019 New Orleans Coding Challenge and recieved 2nd place.</li>
+                <li>Built an interactive travel book for various countries and cities.</li>
+                </div>
+            <div class="row">
+                    <h2>Life in General</h2>
+                    <p>I'm a huge Disney fan. I've been to the parks three times in the last 4 years and it's become one of my favorite places to photograph.</p>
+                    <p>My favorite part about Disney is that it's very family oriented. There's something for everyone to enjoy and ou feel right at home.</p>
+                    <p>I've been to Disney twice with competetive cheerleading and once with all my bestfriends.</p>
+                    <p>Checkout my favorite images in the gallery!<p>
+            </div>
+            <div class="row">
+                <h2>Artistic Abilities</h2>  
+                <p>I've been an art student for the past 4 years and I've really come to enjoy it. Art wasn't an ability I had growing up but I learned and improved very much.</p>
+                <p>The best part about art is that it's a talent anyone can learn.</p>  
+                <p>My favorite mediums include</p>
+                <li>Soft pastels</li>
+                <li>Acrylic paint</li>   
+                <li>Prismacolor pencils</li>
+                <li>Charcoal</li>
+             </div>
+		</div>
         </div>
-    </div>
-    <div class="card">
-          <h2>Artistic Abilities</h2>  
-            <p>I've been an art student for the past 4 years and I've really come to enjoy it. Art wasn't an ability I had growing up but I learned and improved very much.</p>
-            <p>The best part about art is that it's a talent anyone can learn.</p>  
-            <p>My favorite mediums include</p>
-            <li>Soft pastels</li>
-            <li>Acrylic paint</li>   
-            <li>Prismacolor pencils</li>
-            <li>Charcoal</li>
-            <p><a href="pages/art_gal.html">ART WORK</a></p>
-    </div>
-    <div class="card">
-        <body onload="getGreetingsArrowFunctions()">
-      <form action="/data" method="POST">
+	<script type="text/javascript">
+		ScrollOut({
+			targets: 'h1, div' 
+		})
+	</script>
+	</div>
+		<script type="text/javascript">
+			ScrollOut({
+				targets: 'p, div' 
+			})
+		</script>
 
-      <p>Drop a comment if we have anyhting in common!</p>
-      <label for="name">Name:</label><br>
-      <input type="text" name="name"><br>
-      <label for="comment">Comment:</label><br>
-      <textarea name="comment"></textarea><br>
-      <br/><br/>
-      <input type="submit" />
-    </form>
-    </body>
-       <body onload="getGreetingsArrowFunctions()">
-      <form action="/display-comments" method="GET">
+	</div> -->
+	<div class="contact">
+			<div>
+            <body onload="getGreetingsArrowFunctions()">
+            <form action="/data" method="POST">
 
-
-
-
-
-    </div>    
-  </div>
-   <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
-        <img src="images/mia.jpg" alt="Photo of Jamier" width="500" height="500">
-      <div class="column">
-       <p>I'm a rising sophomore computer science major at Xavier University of LA.</p>
-       <p>I live in Northeast Louisiana.</p>
-       <p>I'm a member of the XULA NSBE executive board where I currently serve as a senator.</p>
-       <p>I was a XULA cheerleader for the 19-20 schhol year.</p>
-       <p>I have been coding for about 8 months.</p>
-       <p>I like trying new hair colors and recently I tried silver.</p>
-      </div>
-      <div class="column">
-      </div>
-    </div>
-    <div class="card">
-      <h2>Some hobbies I enjoy</h2>
-              <li>Reading</li>
-               <li>Watching Netflix</li>
-               <li>Cheerleading</li>
-               <li>Baking</li>
-    </div>
-    <div class="card">
-      <h2>Find me here</h2>
-      <p><a href="https://www.linkedin.com/in/jamier-ashley-a398a41a8/">Linkedin profile</a></p>
-      <p><a href="https://github.com/jamierashley?tab=repositories">Github profile</a></p>
-    </div>
-  </div>
-</div>
- 
-<div class="footer">
-    <div id="content">
+            <h2>Drop a comment if we have anything in common!</h2>
+            <label for="name">Name:</label><br>
+            <input type="text" name="name"><br>
+            <label for="comment">Comment:</label><br>
+            <textarea name="comment"></textarea><br>
+            <br/><br/>
+            <input type="submit" />
+            </form>
+            </body>
+		<script type="text/javascript">
+		ScrollOut({
+			targets: 'footer, p' 
+		})
+		</script>
+	</div>
+	<footer id='foot'>
+		<p>
+	      <div id="content">
       <p>Click here to get a random quote from one of my favorite novels!</p>
       <button onclick="addRandomQuote()">Quotes</button>
       <div id="quote-container"></div>
     </div>
-</div>
+		</p>
+	</footer>
 </body>
 </html>
