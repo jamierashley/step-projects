@@ -20,7 +20,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.sps.classes.Comment;
+import com.google.sps.classes.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +37,12 @@ public class ListCommentServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
-    response.setContentType("application/json;");
- //   response.getWriter().println(json);
-
     Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<String> stringOfComments = new ArrayList<>();  
+       ArrayList<String> stringOfComments = new ArrayList<>();  
     for (Entity entity : results.asIterable()) {
          String title = (String) entity.getProperty("title");
          stringOfComments.add(title); 
@@ -58,7 +56,7 @@ public class ListCommentServlet extends HttpServlet {
       response.getWriter().println("There are no comments to show.");
     }
 
-}
+  }
    private String convertToJsonUsingGson(ArrayList listOfComments) {
     Gson gson = new Gson();
     String json = gson.toJson(listOfComments);
