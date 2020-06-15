@@ -7,21 +7,21 @@ import java.time.LocalDateTime;
 import java.time.format.FormatStyle;
 
 // Class representing a Comment
-public class Comment {
+public class StringsIn{
   private String name;
   private String comment;
   private String date;
 
-
-  public Comment(String commentIn, String nameIn){
-    name = nameIn;
-    comment = commentIn;
-    date = getCurrentDate();
+  public StringsIn(String n, String c){
+      name = n;
+      comment = c;
+      date = getCurrentDate();
   }
-  public Comment(String commentIn, String nameIn, String dateIn){
-    name = nameIn;
-    comment = commentIn;
-    date = dateIn;
+  
+  public StringsIn(String n, String c, String d){
+      name = n;
+      comment = c;
+      date = d;
   }
   public void setDateToCurrentTime(){
     date = getCurrentDate();

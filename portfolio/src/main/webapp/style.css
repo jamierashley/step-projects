@@ -10,55 +10,21 @@
 * {
   box-sizing: border-box;
 }
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
-}
- 
-.header {
-  padding: 30px;
-  font-size: 40px;
-  text-align: center;
-  background: rgb(204,255,255);
-}
- 
-.leftcolumn {   
+
+.column {
   float: left;
-  width: 60%;
+  width: 33.33%;
+  padding: 5px;
 }
- 
-.rightcolumn {
-  float: left;
-  width: 40%;
-  padding-left: 20px;
-}
- 
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
- 
-.card {
-   background-color: rgb(204,204,255);
-   padding: 20px;
-   margin-top: 20px;
-}
- 
 .row:after {
   content: "";
   display: table;
   clear: both;
+  font-family: monospace;
 }
- 
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: rgb(204,255,255);
-  margin-top: 20px;
-}
- 
+h1{
+     color:white;
+ }
 h2{
     color: white;
 }
@@ -66,18 +32,6 @@ h2{
     color: rgb(204,204,255)
 }
  
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
- .navbar {
-  background-color: rgb(204,255,255)); 
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
 .navbar li {float: left;}
 .navbar li a {
   color: white;
@@ -91,4 +45,242 @@ h2{
 @media screen and (max-width: 580px) {
   .navbar li.right, 
   .navbar li {float: none;}
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(50,50,50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #92ff05;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 255, 10, 0.863);
+}
+
+nav{
+	background-color: rgba(38, 0, 255, 0.226);
+	position: relative;
+	width: 100%;
+	height: auto;
+	z-index: 2;
+	line-height: 60px;
+	animation: mymove 2s 1;
+}
+/* new stuff */
+@keyframes mymove{
+	from {left : -100%;}
+	to {left: 0%;}
+}
+ul{
+	padding: 0px;
+	margin: 0px;
+}
+#social{
+	background-color: rgba(38, 0, 255, 0.226)
+	margin-top: 15px;
+	border-radius: 20px;
+	width: 35%;
+	font-size: 1.2em;
+	float: right;
+	color: rgb(200,200,150);
+	margin-right: 20px;
+}
+#social p{
+	vertical-align: middle;
+	margin-left: 1.5em;
+	display: inline;
+    color: white;
+}
+#social li{
+	display: inline;
+	margin-right: 4%;
+	float: right;
+}
+#social img{
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+}
+#options{
+	padding: 0.3em 1em;
+}
+#options a{
+	color: white;
+	font-size: 1.5em;
+	font-family: monospace;
+	padding: 0.3em;
+	text-decoration: none;
+}
+#options li{
+	display: inline-block;
+	margin: 1em;
+}
+#options a:hover{
+	color: rgba(136, 255, 0, 0.507);
+	transition: 0.2s
+}
+#social img:hover{
+	width: 2em;
+	height: 2em;
+	transition: 0.5s;
+}
+main{
+	border: 1px solid rgba(38, 0, 255, 0.226);
+	position: relative;
+	top: 0em;
+	background-image: url(/images/mia4.JPG);
+	animation: main-animate 2s 1;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size:cover;
+}
+main p{
+	transition: 2s;
+}
+@keyframes main-animate{
+	from{
+		right: -100%;
+	}to{
+		right: 0%;
+	}
+}
+main p{
+	color: white;
+	font-size: 10em;
+	font-weight: bold;
+	font-family: garamond;
+	letter-spacing: 0.1em;
+	text-align: right;
+	opacity: 0.3;
+}
+#about_me{
+	padding: 10px 0px;
+	position: relative;
+	top: 65px;
+	background-color: rgba(188, 171, 248, 0.555)
+}
+#about_me h1[data-scroll='in']{
+	opacity: 1;
+	text-align: center;
+	font-size: 90px;
+	letter-spacing: 4px;
+	color: white;
+	transition: 1s;
+}
+#about_me h1[data-scroll='out']{
+	opacity: 0;
+	transform: scaleX(0);
+}
+#about_me .description[data-scroll='in']{
+	transition: 1s;
+	opacity: 1;
+}
+#about_me .description[data-scroll='out']{
+	transform: scaleX(0);
+	opacity: 0;
+}
+#about_me .description{
+	padding-top: 10px;
+	font-size: 20px;
+	text-align: justify;	
+	font-family: 	font-family: 'Comix Sans MS', Georgia, sans-serif;
+	margin-left: 55%;
+	margin-right: 5%;	
+}
+
+#about_me p{
+	font-size: 1em;
+    font-family: 	font-family: 'Comix Sans MS', Georgia, sans-serif;
+}
+#about_me p[data-scroll='in']{
+	animation: democracy 1s 1;
+	transform: scaleX(1);
+	opacity: 1;
+}
+#about_me p[data-scroll='out']{
+	transform: scaleX(0);
+	opacity: 0;
+}
+@keyframes democracy{
+	from{ 
+		left: 0%;
+	}to{
+		left: 50%;
+	}
+}
+#skills-animation{
+
+}
+body{
+	background-color: rgb(0, 0, 0);
+	color: rgb(0, 0, 0);
+	margin: 0;
+	padding: 0px 10px;
+}
+
+.contact{
+	color: white;
+	font-family: 'Comix Sans MS', Georgia, sans-serif;
+	font-size: 2em;
+	text-align: center;
+	padding: 1.5em 0;
+	letter-spacing: 0.1em;
+}
+.contact p[data-scroll='in']{
+	transform: scaleX(1);
+	transition: 1s;
+	opacity: 1;
+}
+.contact p[data-scroll='out']{
+	transform: scaleX(0);
+	opacity: 0;
+}
+form{
+	font-size: 0.7em;
+	letter-spacing: 0.15em;
+	padding: 40px 0px;
+	display: inline-block;  
+}
+form input{
+	background-color:  rgba(188, 171, 248, 0.555);
+	border:0;
+	border-radius: 20px;
+	height: 30px;
+	width: 300px;
+	text-align: center;
+}
+
+#form{
+	display: inline-block;
+}
+form textarea{
+	background-color: rgba(188, 171, 248, 0.555);
+	width: 20em;
+	font-size: 1.5em;
+	height: 8em;
+	border-radius: 30px;
+	border: 0;
+	text-align: center;
+}
+.contact div[data-scroll='in']{
+	transform: scaleX(1);
+	opacity: 1;
+	transition: 2s;
+}
+.contact div[data-scroll='out']{
+	transform: scaleX(0);
+	opacity: 0;
+}
+footer{
+	background-color: rgba(38, 0, 255, 0.226);
+	font-family: georgia;
+	font-size: 0.9em;
+	padding: 1em;
+	text-align: center;
+	letter-spacing: 0.2em;
 }

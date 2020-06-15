@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Synchronous Loading</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script src='script.js' type="text/javascript"></script>
+    <style>
+      #map {
+        height:80%;
+      }
+      html, body {
+        height: 75%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id='top'>
+		<div id = 'options'>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="https://www.github.com/jamierashley" target='_blank'>Projects</a></li>
+				<li><a href="gallery.html">Disney Things</li>
+				<li><a href="art_gal.html">Art Gallery</a></li>
+                <li><a href="maps.html">Map</a></li>
+			</ul>
+		</div>
+	</nav>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHU87Ay699FFNxInER5EHZbibhzFAUHic"></script>
+    <script>
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    </script>
+  </body>
+</html>
