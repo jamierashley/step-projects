@@ -13,15 +13,15 @@ public class Comment {
   private String date;
 
 
-  public Comment(String commentIn, String nameIn){
-    name = nameIn;
-    comment = commentIn;
+  public Comment(String comment, String name){
+    this.name = name;
+    this.comment = comment;
     date = getCurrentDate();
   }
-  public Comment(String commentIn, String nameIn, String dateIn){
-    name = nameIn;
-    comment = commentIn;
-    date = dateIn;
+  public Comment(String comment, String name, String date){
+    this.name = name;
+    this.comment = comment;
+    this.date = date;
   }
   public void setDateToCurrentTime(){
     date = getCurrentDate();
