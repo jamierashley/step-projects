@@ -50,51 +50,21 @@ function displayComments() {
 
 //arrow function
 //const ArrayIn = ArrayLIst<String>;
-const ArrayIn = document.getElementById('data-holder');
+const ArrayIn = document.getElementById('data-holder').innerHTML;
 function getGreetingsArrowFunctions() {
   fetch('/data').then(response => response.json()).then((ArrayIn) => {
     for (i=0; i < ArrayIn.length; i++){
         console.log(ArrayIn[i]);
+        
      }
   });
 }
 function loadTasks() {
-  fetch('/display-comments').then(response => response.json()).then((tasks) => {
+  fetch('/display-comments').then(response => response.json()).then((stringOfComments) => {
     const taskListElement = document.getElementById('show-task');
-    tasks.forEach((task) => {
-      taskListElement.appendChild(createTaskElement(task));
+    stringOfComments.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(stringOfComments));
     })
   });
 }
-function createMap() {
-  const map = new google.maps.Map(
-      document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
-}
 
-// function createTaskElement(task) {
-//   const taskElement = document.createElement('li');
-//   taskElement.className = 'task';
-
-//   const titleElement = document.createElement('span');
-//   titleElement.innerText = task.title;
-
-//   const deleteButtonElement = document.createElement('button');
-//   deleteButtonElement.innerText = 'Delete';
-//   deleteButtonElement.addEventListener('click', () => {
-//     deleteTask(task);
-
-//     // Remove the task from the DOM.
-//     taskElement.remove();
-//   });
-
-//   taskElement.appendChild(titleElement);
-//   taskElement.appendChild(deleteButtonElement);
-//   return taskElement;
-// }
-
-// function deleteTask(task) {
-//   const params = new URLSearchParams();
-//   params.append('id', task.id);
-//   fetch('/delete-task', {method: 'POST', body: params});
-// }
