@@ -28,7 +28,7 @@
 				<li><a href="https://www.github.com/jamierashley" target='_blank'>Projects</a></li>
 				<li><a href="gallery.html">Disney Things</li>
 				<li><a href="art_gal.html">Art Gallery</a></li>
-                <li><a href="maps.html">Map</a></li>
+                <li><a href="maps.html">Extras</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -37,8 +37,8 @@
     <script>
     function makeMap(){
         var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: {lat: 30.8703881, lng: -92.007126}, 
+                zoom: 4,
+                center: {lat: 39.7837304, lng: -100.4458825}, 
                 styles: [
                     {"elementType": "geometry","stylers": [{"color": "#1d2c4d"}]},
                     {"elementType": "labels.text.fill", "stylers": [{"color": "#8ec3b9" }]},
@@ -281,12 +281,42 @@
                     }
                     ]
         });
+        var marker = new google.maps.Marker({
+        position:{lat: 39.7837304, lng: -100.4458825},
+        map: map,
+        draggable:true,
+        title:"Drag me!"
+        });
+        var marker2 = new google.maps.Marker({
+        position:{lat: 38.7837304, lng: -98.4458825},
+        map: map,
+        draggable:true,
+        title:"Drag me!"
+        });
+        var marker3 = new google.maps.Marker({
+        position:{lat:  32.5093109, lng: -92.1193012},
+        map: map,
+        draggable: false,
+        title:"Pecanland Mall"
+        });
+        var marker4 = new google.maps.Marker({
+        position:{lat: 44.85249659, lng: -93.238665712},
+        map: map,
+        draggable: false,
+        title:"Pecanland Mall"
+        });
+
     }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHU87Ay699FFNxInER5EHZbibhzFAUHic&callback=makeMap"
     async defer></script>
     <h2>Using this map you can discover where I'm based, my favorite stores to shop, my favorite place in the world, and a dream 
         location I've never been before.</h2>
+    <h2>Guess my locations for my homestate and favorite place with these clues:
+        <li>My homestate is home of a southern Catholic holiday and is shaped like a shoe</li>
+        <li>My favorite place has two locations in the US, is every kids' dream, and has a castle</li>
+    </h2>
+    <h2>Drag the markers to the states after you've guessed!</h2>    
     <div class="column">
     <div id="chart-container"></div>
     </div>
@@ -309,12 +339,13 @@
 
         const options = {
             'title': 'Jamier\'s Summer Days',
-            'width':900,
-            'height':900,
+            'width':700,
+            'height':700,
             'backgroundColor': 'black',
             'colors': ['PaleGreen', 'LightGreen', 'MediumSpringGreen', 'SpringGreen', 'SeaGreen'],
-            is3D: true
-        };
+            'titleTextStyle': { 'color': 'white', 'fontName': 'arial', 'fontSize': '20', 'bold': false, 'italic': false},  
+            'tooltip.textStyle': { 'color': 'white', 'fontName': 'arial', 'fontSize': '20', 'bold': false, 'italic': false},  
+            is3D: true};
 
         const chart = new google.visualization.PieChart(
             document.getElementById('chart-container'));
@@ -322,8 +353,10 @@
         }
     </script>
     <div class="column">
+        <div class="column">
         <h2>This chart represents how I normally spend my weekdays. I'm always pretty busy so I don't get much rest or downtime. Everything
             I do in my day however, is important to me so I don't mind :)</h2>
+        </div>    
     </div>
     </body>
     </html>
